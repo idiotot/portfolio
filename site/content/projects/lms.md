@@ -30,11 +30,23 @@ LMS에서 강의 자료·공지·과제를 따로 찾고, 본문에 적힌 마�
 | SQLite · rusqlite | 자료 레코드, 관측 시각과 범위별 처리 상태 저장 |
 | Iced 0.14 | 과목·자료 목록, 검색·필터, 일정·근거 화면 |
 
-저장·변환·GUI를 같은 Rust workspace에 두고, Iced 화면이 변환기의 결과를 사용하도록 구성했습니다. GUI는 tiny-skia 렌더러를 사용하며 Chromium이나 Electron을 포함하지 않습니다. SQLite는 별도 서버 없이 로컬 파일로 다루는 구조입니다.
+### Rust 선정 근거
+
+Rust를 구현 언어로 선정하였다. 주요 선정 기준은 높은 런타임 성능, 컴파일 단계의 정적 검증, 메모리 안전성 및 향후 기능 확장 가능성이었다.
+
+Rust는 가비지 컬렉터에 의존하지 않고 소유권과 빌림 체계로 메모리 접근과 자원 수명의 제약을 컴파일 단계에서 검증한다. 안전한 Rust 코드에서 데이터 경쟁과 다수의 메모리 안전성 관련 오류를 예방할 수 있다는 점을 고려하였다.
+
+Cargo의 패키지 관리와 workspace 구성은 모듈화에 유리하다. 현재 프로젝트도 저장·변환·GUI를 세 crate로 분리하였다. 소유권과 타입 시스템에 대한 학습 비용은 있지만, 기술적 요구사항과 확장 가능성을 종합적으로 고려하여 채택하였다. NAVI Study의 런타임 성능 측정은 아직 수행하지 않았다.
+
+### Iced와 SQLite 적용 현황
+
+저장·변환·GUI를 같은 Rust workspace에 두고, Iced 화면이 변환기의 결과를 사용하도록 구성하였다. GUI는 tiny-skia 렌더러를 사용하며 Chromium이나 Electron을 포함하지 않는다. SQLite는 별도 서버 없이 로컬 파일로 다루는 구조이다.
 
 자료를 저장할 때는 `records`에 종류·원본 식별자·제목·JSON payload를 넣고, `watermarks`에 과목과 자료 종류별 관측 시각을 기록합니다. 두 정보는 같은 트랜잭션에서 갱신합니다.
 
 [SQLite 구조와 실제 코드 발췌](implementation/#저장-구조)
+
+언어 특성 참고: [Rust 소유권 문서](https://doc.rust-lang.org/book/ch04-00-understanding-ownership.html) · [동시성 문서](https://doc.rust-lang.org/book/ch16-00-concurrency.html) · [Cargo 안내](https://doc.rust-lang.org/cargo/guide/)
 
 ## 현재 구현한 기능 {#현재-결과}
 

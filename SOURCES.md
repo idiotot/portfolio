@@ -29,6 +29,12 @@ NAVI Study 개인 프로젝트의 가상 자료 프로토타입을 실행해 만
 
 ## AI 지원과 외부 의존성
 
-Codex를 사용해 과제 조건·로컬 소스 확인, 한국어 콘텐츠 수정, CSS 정리, Hugo 설정, 브라우저 검사와 문서 정리를 진행했습니다. Rust·Iced의 개인적인 선택 계기와 확인되지 않은 성과는 만들어 넣지 않았습니다.
+Codex를 사용해 과제 조건·로컬 소스 확인, 한국어 콘텐츠 수정, CSS 정리, Hugo 설정, 브라우저 검사와 문서 정리를 진행했습니다. Rust 선정 근거는 작성자가 직접 제공한 내용을 반영했습니다. Iced의 개인적인 선택 계기와 확인되지 않은 성과는 만들어 넣지 않았습니다.
+
+Rust 선정 근거의 언어 특성 참고 문서:
+
+- 소유권과 GC 없는 메모리 관리: https://doc.rust-lang.org/book/ch04-00-understanding-ownership.html
+- 소유권·타입 검사와 동시성: https://doc.rust-lang.org/book/ch16-00-concurrency.html
+- Cargo의 패키지·의존성·프로젝트 구성: https://doc.rust-lang.org/cargo/guide/
 
 AI 생성 이미지, 외부 웹폰트, 외부 아이콘, 분석 스크립트와 별도 UI 라이브러리는 사용하지 않았습니다. 시스템 글꼴과 텍스트 링크를 사용합니다.
