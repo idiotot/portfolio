@@ -214,6 +214,10 @@ img {
   width: 100%;
 }
 
+.project-card img {
+  aspect-ratio: 1360 / 860;
+}
+
 .project-screenshot {
   margin: 26px 0 34px;
 }

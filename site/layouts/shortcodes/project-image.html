@@ -1,3 +1,0 @@
-{{ $src := .Get "src" }}
-{{ $size := imageConfig (printf "static/%s" $src) }}
-<a href="{{ .Get "href" | relURL }}"><img src="{{ $src | relURL }}" alt="{{ .Get "alt" }}" width="{{ $size.Width }}" height="{{ $size.Height }}" decoding="async"></a>

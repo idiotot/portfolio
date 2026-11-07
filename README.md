@@ -42,7 +42,8 @@ hugo server --source site --config hugo.toml,pages.json --baseURL http://localho
 | `site/content/projects/implementation.md` | 코드 발췌 및 테스트 설명 |
 | `site/assets/css/portfolio.css` | 색상·문서·메뉴·카드·이미지·코드·반응형 스타일 |
 | `site/layouts/partials/custom_head.html` | Hugo 내장 minify·fingerprint를 통한 CSS 연결 |
-| `site/layouts/partials/nav.html` | 내부 메뉴 경로 및 현재 페이지 표시 |
+| `site/layouts/partials/nav.html` | 현재 페이지와 상위 프로젝트 구간 표시 |
+| `site/layouts/partials/document_toc.html` | 프로젝트·구현 노트의 Hugo 기본 목차 |
 | `site/layouts/_default/` | 한국어 문서 구조와 페이지 h1 |
 | `site/layouts/shortcodes/project-preview.html` | 홈의 프로젝트 영역 |
 | `site/layouts/shortcodes/screenshot.html` | 실제 이미지·설명·원본 링크 |
@@ -77,6 +78,8 @@ git push origin main
 Actions에서 대상 SHA의 `build`·`deploy` 성공 여부를 확인하고 공개 주소에서 변경 결과를 확인한다. 워크플로는 Hugo와 Python을 설치한 후 수업 제공 빌드 스크립트, Pages artifact 및 deploy 단계를 실행한다. CSS는 Hugo 내장 자산 처리로 생성하며 브라우저에서 무결성 해시를 검사한다.
 
 ## 검증 및 출처
+
+최종 이미지 회귀 복구와 코드 대비·메뉴·목차의 검증은 [docs/site-checks.md](docs/site-checks.md)에 기록하였다. 검증 도구 일반화와 CI 통합은 이번 배포에서 보류하였다.
 
 브라우저·빌드·링크·접근성 검사와 한계는 [VALIDATION.md](VALIDATION.md)에, 테마·이미지·코드 발췌와 AI 지원 범위는 [SOURCES.md](SOURCES.md)에 기록하였다. NAVI Study의 가상 데이터 기반 GUI와 별도 저장 모듈의 구현 상태를 구분하여 서술하였다.
 
