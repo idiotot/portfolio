@@ -3,6 +3,7 @@ public/
 .hugo_build.lock
 
 # Prepared Hugo Pages site
+/site/public/
 !/site/
 !/site/**
 !/.github/
