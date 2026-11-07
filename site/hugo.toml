@@ -6,7 +6,7 @@ defaultContentLanguage = 'ko'
 enableRobotsTXT = true
 disableKinds = ['taxonomy', 'term', 'RSS']
 [params]
-description = '학습 환경의 불편을 작은 도구로 해결하는 개발 기록. Rust와 Iced로 LMS 자료 관리 앱을 만들고 있습니다.'
+description = '컴퓨터공학을 공부하는 idiotot의 개인 포트폴리오. Rust로 개발하는 LMS 자료 관리 도구 NAVI Study와 학습 과정을 소개합니다.'
 [markup.highlight]
 style = 'friendly'
 lineNos = false
