@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko" id="top">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}idiotot | 개인 포트폴리오{{ else }}{{ .Title }} | idiotot{{ end }}</title>
+<meta name="description" content="{{ .Description | default .Site.Params.description }}">
+{{ partial "style.html" . }}
+{{ partial "custom_head.html" . }}
+</head>
+<body>
+<header>{{ partial "header.html" . }}</header>
+<main id="main" tabindex="-1">{{ block "main" . }}{{ end }}</main>
+<footer>{{ partial "footer.html" . }}</footer>
+</body>
+</html>
