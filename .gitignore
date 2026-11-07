@@ -3,7 +3,6 @@ public/
 .hugo_build.lock
 
 # Prepared Hugo Pages site
-/site/public/
 !/site/
 !/site/**
 !/.github/
@@ -15,3 +14,4 @@ public/
 **/resources/_gen/
 **/.hugo_build.lock
 /.github-pages-setup-backups/
+/site/public/
