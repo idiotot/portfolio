@@ -1,0 +1,100 @@
+NAVI Study test execution evidence
+Command: cargo test --offline --locked --workspace -- --test-threads=1
+Started (Asia/Seoul): 2026-11-07T20:13:28+09:00
+Finished (Asia/Seoul): 2026-11-07T20:13:32+09:00
+Exit code: 0
+Path normalization: absolute project/home paths are replaced; test output is otherwise retained.
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.15s
+     Running unittests src/lib.rs (target/debug/deps/jbnu_archive_store-e9f4bdc07037d58c)
+
+running 26 tests
+test tests::attachment_and_evidence_bounds ... ok
+test tests::deadlines_compare_instants ... ok
+test tests::domain_boundaries_and_nested_secrets ... ok
+test tests::linux::aggregate_byte_limit_rejects_without_writes ... ok
+test tests::linux::archive_safe_fd_limits_symlinks_fifo ... ok
+test tests::linux::batch_boundaries_and_missing_course ... ok
+test tests::linux::child_fixture ... ok
+test tests::linux::cleanup_permission_failure_is_reported ... ok
+test tests::linux::close_failure_preserves_primary_cause_and_init_file ... ok
+test tests::linux::creation_atomicity_permissions_and_failure_hooks ... ok
+test tests::linux::directory_cleanup_refuses_nonempty_and_replaced_entries ... ok
+test tests::linux::directory_creation_and_locking ... ok
+test tests::linux::external_sqlite_writer_retains_its_lock ... ok
+test tests::linux::extreme_umask_cleans_only_new_empty_directory ... 
+running 1 test
+test tests::linux::child_fixture ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 25 filtered out; finished in 0.00s
+
+
+running 1 test
+test tests::linux::child_fixture ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 25 filtered out; finished in 0.00s
+
+ok
+test tests::linux::initialization_diagnostics_match_actual_residuals ... ok
+test tests::linux::multi_scope_conflict_rolls_back_whole_batch ... ok
+test tests::linux::no_replace_publish_and_incomplete_database_preservation ... ok
+test tests::linux::paging_with_cursor_query_plans ... ok
+test tests::linux::policies_refuse_bad_files_without_journal_deletion ... ok
+test tests::linux::real_hot_journal_recovery ... 
+running 1 test
+ok
+test tests::linux::restrictive_umask_in_child_does_not_break_created_modes ... 
+running 1 test
+test tests::linux::child_fixture ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 25 filtered out; finished in 0.01s
+
+ok
+test tests::linux::same_time_retry_and_disjoint_batches ... ok
+test tests::linux::schema_drift_versions_and_payload_corruption ... ok
+test tests::linux::snapshot_finalization_and_empty_scope_watermark ... ok
+test tests::linux::symlink_sidecar_blocks_cleanup_and_is_preserved ... ok
+test tests::record_id_includes_kind_and_survives_title_or_path_changes ... ok
+
+test result: ok. 26 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.15s
+
+     Running unittests src/lib.rs (target/debug/deps/jbnu_catalog_import-b79a242b41ff4a32)
+
+running 11 tests
+test tests::attachment_conflict_is_not_silently_overwritten ... ok
+test tests::body_seconds_conflict_and_fractional_instants_are_not_truncated ... ok
+test tests::close_reopen_split_catalog_retry_after_middle_batch_busy ... ok
+test tests::duplicate_order_does_not_change_result ... ok
+test tests::global_entry_budget_is_enforced_during_parsing ... ok
+test tests::legacy_shape_dedup_titles_weeks_and_dates ... ok
+test tests::missing_or_mismatched_page_never_confirms_deadline ... ok
+test tests::parser_rejects_duplicate_unknown_deep_and_oversized_input ... ok
+test tests::rejects_untrusted_urls_traversal_and_course_alias_ambiguity ... ok
+test tests::split_import_writer_fixture ... ok
+test tests::synthetic_plan_upserts_into_temporary_store_and_retries ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.53s
+
+     Running unittests src/main.rs (target/debug/deps/jbnu_study_ui-ba8e1ce16c27bfa7)
+
+running 5 tests
+test tests::course_search_and_week_filters_work_together ... ok
+test tests::embedded_demo_is_converted_and_deduplicated ... ok
+test tests::invalid_item_messages_do_not_panic_or_change_selection ... ok
+test tests::read_saved_and_reset_are_memory_only_state ... ok
+test tests::review_acknowledgement_does_not_confirm_or_change_due_date ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+   Doc-tests jbnu_archive_store
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests jbnu_catalog_import
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

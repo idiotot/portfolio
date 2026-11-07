@@ -98,18 +98,31 @@ Message::Acknowledge => {
 
 ## 검증 기록 {#검증-기록}
 
-2026년 11월 7일 현재 소스에 대해 다음 명령을 실행하였다.
+2026년 11월 7일 20:13:28~20:13:32 KST에 다음 명령을 실행하여 종료 코드 0을 확인하였다. 실행 환경은 CachyOS Linux x86_64, `rustc 1.99.1 (58cf8f9c3 2026-10-13)`, `cargo 1.99.1 (5f94df478 2026-08-27)`이다.
 
 ```bash
-cargo test --offline --workspace -- --test-threads=1
+cargo test --offline --locked --workspace -- --test-threads=1
 ```
 
-| 모듈 | 통과 | 실패 |
-| --- | ---: | ---: |
-| archive-store | 26 | 0 |
-| catalog-import | 11 | 0 |
-| study-ui | 5 | 0 |
-| 합계 | **42** | **0** |
+| 모듈 | 검증 종류 및 범위 | 통과 | 실패 |
+| --- | --- | ---: | ---: |
+| archive-store | 도메인 검증, 임시 파일시스템·SQLite 저장 및 오류 복구 연계 | 26 | 0 |
+| catalog-import | 입력 파싱·중복·마감 판정, 변환 결과의 임시 저장소 연계 | 11 | 0 |
+| study-ui | 메모리 내 필터·선택·읽음·보관·검토 상태 처리 | 5 | 0 |
+| 합계 | 위 세 모듈의 테스트 | **42** | **0** |
+
+Cargo는 위 항목을 각 crate의 `unittests` 실행으로 출력하지만, 그 안에는 임시 DB·파일시스템을 이용한 연계 검증도 포함된다. 별도 `tests/` 실행 파일만을 뜻하는 통합 테스트 분류와 구분한다. 보조 child 프로세스의 재실행은 중복 합산하지 않았으며, 문서 테스트는 실행 항목 0개이다.
+
+### 실행 증거 및 재현 조건
+
+- [경로를 정규화한 실행 로그](../../../evidence/navi-tests-20261107-round2.txt): 실행 명령·시각·종료 코드와 Cargo 출력
+- [환경 및 소스 SHA-256 기록](../../../evidence/navi-tests-20261107-round2.json): 도구 버전, 모듈별 결과, `Cargo.lock`·소스 해시 및 로그 해시
+
+절대 경로는 `<NAVI_PROJECT_ROOT>` 또는 `<USER_HOME>`으로 대체하였다. 인증 정보, 실제 강의 첨부파일 및 운영 DB 내용은 포함하지 않았다. Rust·Cargo·SQL 파일과 `Cargo.lock`은 실행 전후 해시가 일치하였으며, 테스트에 포함된 가상 JSON fixture의 해시는 실행 후 별도로 기록하였다.
+
+재현에는 원본 NAVI Study workspace, 기록된 도구 버전 및 동일한 `Cargo.lock`이 필요하다. `--offline`은 필요한 의존성이 로컬에 확보되어 있다는 조건이며, `--locked`는 잠금 파일 변경을 허용하지 않는다. 전체 앱 소스는 공개하지 않았으므로 포트폴리오 저장소만 복제하여 42개 테스트를 재실행할 수는 없다.
+
+### 대표 검증 항목
 
 주요 테스트와 검증 대상은 다음과 같다.
 
@@ -119,7 +132,9 @@ cargo test --offline --workspace -- --test-threads=1
 - `review_acknowledgement_does_not_confirm_or_change_due_date`: 검토 표시와 마감 판정의 분리
 - `read_saved_and_reset_are_memory_only_state`: 메모리 내 상태 및 초기화
 
-검증에는 가상 자료와 임시 DB를 사용하였다. 실제 LMS 로그인·동기화, GUI의 영구 저장, 다른 OS에서의 실행 및 실제 저장 장치 고장은 검증 범위에 포함하지 않았다.
+위 결과는 기록된 소스·환경·시점의 가상 자료 및 임시 DB 테스트에 한정된다. GUI 상태 테스트는 창을 띄우지 않고 `App::update` 등의 상태 변화를 검증하였다. 전체 화면 조작, 실제 LMS 로그인·동기화, GUI의 영구 저장, 다른 OS에서의 실행, 성능 측정 및 실제 저장 장치 고장은 검증 범위에 포함하지 않았다.
+
+사이트의 실행 이미지는 기존 Xvfb GUI 실행 기록을 재사용하였다. 이번 42개 자동 테스트 통과와 새로운 GUI 조작 검증을 동일한 결과로 표현하지 않았다.
 
 검토 근거는 `VALIDATION.md`, `PROTOTYPE_REVIEW.md`, `DATA_CONTRACT.md` 및 위 소스 파일이다. 포트폴리오 저장소의 [검토 목록](https://github.com/idiotot/portfolio/blob/main/docs/navi-implementation-review.md)에 파일별 SHA-256을 기록하였다.
 

@@ -1,0 +1,75 @@
+{
+  "project": "NAVI Study",
+  "started_at": "2026-11-07T20:13:28+09:00",
+  "finished_at": "2026-11-07T20:13:32+09:00",
+  "timezone": "Asia/Seoul",
+  "command": "cargo test --offline --locked --workspace -- --test-threads=1",
+  "exit_code": 0,
+  "environment": {
+    "os": "Linux",
+    "distribution": "CachyOS Linux",
+    "architecture": "x86_64",
+    "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+    "cargo": "cargo 1.99.1 (5f94df478 2026-08-27)"
+  },
+  "modules": {
+    "archive-store": {
+      "passed": 26,
+      "failed": 0
+    },
+    "catalog-import": {
+      "passed": 11,
+      "failed": 0
+    },
+    "study-ui": {
+      "passed": 5,
+      "failed": 0
+    }
+  },
+  "total_passed": 42,
+  "total_failed": 0,
+  "counting_rule": "Cargo primary test-suite summaries; auxiliary child-process reruns are not added again.",
+  "scope": [
+    "storage/domain and temporary-filesystem/SQLite tests",
+    "catalog parsing and temporary-store integration tests",
+    "in-memory GUI state tests"
+  ],
+  "not_covered": [
+    "complete interactive GUI operation",
+    "real LMS login or synchronization",
+    "GUI persistent storage",
+    "Windows/macOS runtime",
+    "performance benchmarks"
+  ],
+  "source_sha256": {
+    "Cargo.toml": "38bab9c227d260f847f39b821e8eccc981ac4716c0cce1aefdccdbad74e31348",
+    "Cargo.lock": "49294a3ac044450db90786dab34d5c2d344d5c7914839505bb2a4aed5ade5bde",
+    "crates/archive-store/Cargo.toml": "d0e295a049d06b186e57cb0666c6580d7177ed9a8f5cf758957bdb7a49611688",
+    "crates/archive-store/src/archive.rs": "62451ff4801f5690a5a2e106025d8a2763dfa82c075dbd1721aa7a876c191c29",
+    "crates/archive-store/src/domain.rs": "44c847ae46157fac1a66af509dd06b79b854ae36b461f8391bbb7d602d2b30be",
+    "crates/archive-store/src/error.rs": "8e427e27c0eae6d064e817954ba29c5d6f1cf9266b8849100c12bf1517ad9e68",
+    "crates/archive-store/src/lib.rs": "6860c8c312a719d6ab2e74c67bc40166c6141d4addd7ca4de7463902a1973a80",
+    "crates/archive-store/src/platform.rs": "00a6dc8ada63027cd9a983e311b84c6a2c2d4f554bd7668c7bc169964ca5dbdf",
+    "crates/archive-store/src/schema_v1.sql": "92d89b853a81199fc1214cd152e3422f579fa57d4d7ee036b95f44716985d857",
+    "crates/archive-store/src/store.rs": "7ad2af3317c21e40aa555daf525f256979ca75e06ddebf9ae1600dd6fbc307d7",
+    "crates/archive-store/src/tests.rs": "b5e74c153694b51461ec5201ad2b508a39708b9c6ab997b53f51a78eff0d8acf",
+    "crates/catalog-import/Cargo.toml": "6608e8be80270731024d5dbd466429f66fa68ff79fcb33013e6d5d90511b60f0",
+    "crates/catalog-import/src/evidence.rs": "e7f288511a0db5fe4ba0587ba547fd08264a66d8870b80ea143b2f42a16055c5",
+    "crates/catalog-import/src/lib.rs": "6e88c1fec494acf04a830faf5b9a3763863cb3ea0c663895d67aff054640bfd4",
+    "crates/catalog-import/src/parse.rs": "98f819444ba079fb02e0f7bd28f7c5c33ce7c14188cdac57ad8a6821f6727e63",
+    "crates/catalog-import/src/source.rs": "8786020749c3d277bfc56fe13f8ca1af8246228626f90375a06ba48b432391bb",
+    "crates/catalog-import/src/tests.rs": "052494d0bcf083fb0b8b60bdc36409619b6dbe9f7f450efea303f76232439131",
+    "crates/study-ui/Cargo.toml": "67614d4d3f7b2ce0d7c0879613a2d0d68bef4126e4eac4edf2e7f16034773eaa",
+    "crates/study-ui/src/demo.rs": "f5dde576a331871ddec7b0b852d6401656e0bf5352cc81299e3baf278c665a8d",
+    "crates/study-ui/src/main.rs": "57c6bcaee08b26ed334f7dd9a09706f77c8bfd490cd4ec35314a01c3f30ebca0",
+    "crates/study-ui/src/style.rs": "4779926642f4904a30e84e6f9321c0ffc5027368c61fab016db842f6a5d64407",
+    "crates/study-ui/src/tests.rs": "81194f1f102a624d5f41230bf829757ea359d344a29cb3921310486eef50b216",
+    "crates/study-ui/src/view.rs": "162955f6d957b0e276695b45df51bb7f73244aaca82dcd5571707e170faefc34",
+    "crates/catalog-import/tests/fixtures/catalog.json": "a31dc09fdb2becded3ce7dff1a21667f98d6dd5032095c681200f3cf089b7f55"
+  },
+  "source_unchanged_during_run": true,
+  "log_sha256": "077b9da938d8ef77a6f022a867e6c11366b9ea994fed13fbed0f2566d4cc7670",
+  "privacy": "No environment-variable dump, credentials, real course attachments, or production database contents are included.",
+  "fixture_hash_note": "The embedded synthetic JSON fixture was hashed after the run; Rust, Cargo and SQL files were hashed before and after the run.",
+  "reproduction": "Run the recorded command from the original NAVI Study workspace with the recorded Rust toolchain, matching Cargo.lock and cached dependencies. The full app source is not publicly published in this portfolio."
+}

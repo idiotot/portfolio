@@ -46,6 +46,7 @@ hugo server --source site --config hugo.toml,pages.json --baseURL http://localho
 | `site/layouts/_default/` | 한국어 문서 구조와 페이지 h1 |
 | `site/layouts/shortcodes/project-preview.html` | 홈의 프로젝트 영역 |
 | `site/layouts/shortcodes/screenshot.html` | 실제 이미지·설명·원본 링크 |
+| `site/static/evidence/navi-tests-20261107-round2.*` | 정규화한 테스트 로그 및 환경·소스 해시 JSON |
 | `site/static/images/navi-*.png` | 기존 가상 데이터 프로토타입 실행 화면 3장 |
 | `site/hugo.toml` | 제목·언어·메뉴·설명 |
 | `site/pages.json` | 수업 스크립트가 생성한 운영 baseURL 및 테마 설정 |
@@ -78,5 +79,7 @@ Actions에서 대상 SHA의 `build`·`deploy` 성공 여부를 확인하고 공�
 ## 검증 및 출처
 
 브라우저·빌드·링크·접근성 검사와 한계는 [VALIDATION.md](VALIDATION.md)에, 테마·이미지·코드 발췌와 AI 지원 범위는 [SOURCES.md](SOURCES.md)에 기록하였다. NAVI Study의 가상 데이터 기반 GUI와 별도 저장 모듈의 구현 상태를 구분하여 서술하였다.
+
+NAVI Study의 자동 테스트는 [실행 로그](site/static/evidence/navi-tests-20261107-round2.txt)와 [환경·해시 기록](site/static/evidence/navi-tests-20261107-round2.json)으로 확인할 수 있다. 원본 workspace와 의존성 캐시가 필요한 명령이며, 이 포트폴리오 저장소만으로 앱 테스트를 재실행할 수는 없다. 상세 범위와 제외 항목은 구현 노트에 기록하였다.
 
 보고서와 학번·실명은 공개 저장소에 포함하지 않는다. `public/`, `site/public/`, 캐시 및 임시 도구는 Git에서 제외한다.
