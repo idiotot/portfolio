@@ -1,50 +1,61 @@
 # 기능 검증 기록
 
-검사일: 2026-11-07 KST. 브라우저: Codex 내장 브라우저, 버전 미표시. OS: CachyOS Linux.
+2026-11-07 KST. CachyOS Linux / Hugo Extended 0.167.0 / Python 3.14.9 / Codex 내장 브라우저(버전 미표시).
 
-## 빌드와 실행
+## 이번 개선의 빌드와 정적 검사
 
-- Hugo Extended 0.167.0과 Python 3.14.9로 수업 제공 .github/pages_build.py --build를 실행해 public/index.html 생성과 빌드 성공을 확인했다.
-- README의 hugo server 명령으로 별도 로컬 서버를 띄우고 /portfolio/에서 HTTP 200을 확인했다. 검사가 끝난 서버는 종료했다.
-- 생성된 모든 HTML의 내부 링크·이미지 참조 38개를 파일 경로와 대조해 누락이 없음을 확인했다.
-- 최초 main push SHA: 52a7af98c8af15bb5569ba938d2c70182bec61f9
-- 최초 push 실행: https://github.com/idiotot/portfolio/actions/runs/42361332077
-- 위 실행의 Hugo build와 GitHub Pages deploy가 모두 성공했다. 공개 홈에서 본문·메뉴·이미지 로딩을 확인했다.
-- 후속 변경은 홈에 프로토타입의 가상 자료·구현 범위를 명확히 적은 것이다. 후속 push의 배포 결과와 최종 SHA는 제출 보고서의 Actions 링크를 기준으로 확인한다.
+- 수업 제공 `.github/pages_build.py --build` 실행 성공. HTML 파일 6개를 생성했다.
+- 생성 HTML의 내부 참조 60개, 앵커 참조 16개에 경로·대상 누락이 없었다.
+- CSS의 무결성 해시(SRI)를 사용하는 참조 6개가 실제 생성 파일의 SHA-256과 일치했다.
+- 홈·소개·프로젝트·구현 노트는 h1이 각각 1개이고 lang=ko다.
+- 운영 HTML에 localhost·127.0.0.1·학번·실명이 남지 않았고 지적된 추상적 소개 문장을 제거했다.
+- 테마 원본·라이선스와 수업 제공 스크립트를 보존했다. `prepare_github_pages.py`와 `.github/pages_build.py`는 cmp로 동일함을 확인했다.
 
-## T01 배포
+## 브라우저 검사
 
-예상: main push가 Actions를 시작하고 성공한 빌드 결과가 Pages에 배포되어야 한다.
-실제: 최초 실행의 event=push, build=success, deploy=success와 공개 페이지 접속을 확인했다. 최종 제출 버전은 후속 push의 SHA와 Actions를 보고서에 맞춘다.
+홈·소개·프로젝트·구현 노트 4개 화면을 1440px·768px·390px에서 확인했다.
 
-## T02 경로와 자산
+| 검사 | 예상 | 실제 결과 |
+| --- | --- | --- |
+| 경로·CSS | /portfolio/ 하위 경로에서 CSS·내부 페이지 로딩 | 각 화면에서 CSS 1개 적용, 경로 유지 |
+| 반응형 | 본문·메뉴가 가로로 넘치지 않음 | 12개 화면 조합 모두 scrollWidth가 innerWidth를 넘지 않음 |
+| 코드·표 | 긴 코드는 해당 영역 내부에서 스크롤 | 390px 구현 노트에서 본문 넘침 없이 코드 영역에 가로 스크롤 |
+| 메뉴 | 모바일에서도 선택 가능 | 세 메뉴 모두 높이 44px, 화면 범위 안에 표시 |
+| 이미지 | 원본 비율·alt 유지, 필요한 시점에 로딩 | 스크롤 후 3장 모두 1360×860으로 로드, alt 확인 |
+| 키보드 | Tab 초점·Enter 실행·본문 이동 | 초점 윤곽선 3px solid, 소개 메뉴 Enter 이동, Enter 후 main 초점 확인 |
+| 현재 위치 | 색상 외 표시로 구분 | About 메뉴에 aria-current=page와 밑줄 표시 |
+| 대비 | 주요 글·링크 4.5:1 이상 | 본문 8.36:1, 링크 7.29:1, 보조 설명 6.19:1 |
 
-예상: https://idiotot.github.io/portfolio/projects/lms/ 에 직접 접근·새로고침해도 내용과 이미지가 표시되어야 한다.
-실제: 로컬 운영 빌드에서 내부 주소·새로고침과 두 이미지 로딩을 확인했다. 공개 홈의 메뉴·이미지는 /portfolio/ 경로와 HTTPS를 유지했다. 모든 이미지는 alt가 있다.
+스크린샷 아래 원본 이미지 링크로 전체 크기를 열 수 있다. 지연 로딩된 화면 아래 이미지는 첫 로딩 시 naturalWidth가 0일 수 있어 실제로 스크롤한 뒤 로딩을 확인했다.
 
-## T03 메뉴와 링크
+## GitHub Actions와 배포
 
-예상: 소개·프로젝트·홈·학습 목표 앵커와 이미지 원본·본인 GitHub 링크가 목적지로 연결되어야 한다.
-실제: 브라우저에서 메뉴 이동, 내부 새로고침, 뒤로 가기를 확인했다. GitHub 링크는 https://github.com/idiotot 이다. 빈 href와 의미 없는 # 링크를 넣지 않았다.
+- main push 자동 실행, Pages의 GitHub Actions 배포 방식을 유지했다.
+- CI에서 이 테마가 사용하지 않는 Node·Go·Dart Sass와 범용 CSS 도구 설치 단계를 제거했다.
+- Hugo 0.167.0, Python, 수업 제공 빌드 스크립트와 Pages artifact·deploy 단계를 사용한다.
+- 최초 배포 성공 기록: https://github.com/idiotot/portfolio/actions/runs/42361332077
+- 이번 변경의 실제 실행 상태: https://github.com/idiotot/portfolio/actions/workflows/hugo-pages.yml
+- 제출 보고서에는 최종 main 전체 SHA와 그 SHA의 성공 실행 URL을 기록한다.
 
-## T04 반응형
+## NAVI Study 설명의 검증
 
-예상: 뷰포트 1440px·768px·390px에서 본문이 가로로 넘치지 않고 메뉴와 이미지가 보인다.
-실제: 세 폭 모두 documentElement.scrollWidth가 innerWidth를 넘지 않았다. 390px의 프로젝트 페이지도 넘침 없이 두 이미지가 로드되었다. 폭 변경에 JavaScript 메뉴 상태를 사용하지 않아 숨김 상태가 남지 않았다.
+로컬 프로젝트에서 `cargo test --offline --workspace -- --test-threads=1`을 실행했다. 저장 26개 + 변환 11개 + GUI 상태 5개 = 42개 통과, 실패 0개다. child 보조 실행은 중복 합산하지 않았다.
 
-## T05 키보드와 문서 구조
+SQLite 모듈 구현과 GUI의 실제 저장 기능을 구분했다. 중복·마감 판정·메모리 UI 상태를 코드에서 확인했으며 `docs/navi-implementation-review.md`에 검토 파일의 SHA-256과 결과 요약을 기록했다. GUI 이미지 3장은 기존 실행 화면을 재사용했다. 새 GUI 실행이나 실제 LMS 연결을 검증했다고 쓰지 않았다.
 
-예상: Tab으로 조작에 도달하고 초점이 보이며 Enter로 실행할 수 있어야 한다.
-실제: Tab으로 본문 건너뛰기 링크에 도달했고 solid 윤곽선을 확인했다. Enter 뒤 URL의 #main과 main 초점을 확인했다. lang=ko, 페이지별 h1과 하위 제목을 확인했다.
+## P51 유효 커밋 기준 확인
 
-## 관찰과 수정 후 재검증
+`2026_과제1_공개채점기준.pdf`의 P51과 붙임 2에 **유효 커밋 50개 이상** 요건이 실제로 있다. 공개 배점은 1점이며 비공개 평가에서도 커밋 이력을 추가 확인한다.
 
-내부 페이지의 h1이 없는 것을 관찰해 테마 single.html의 blog 전용 제목 조건을 확인했다. 운영용 single.html에서 모든 페이지에 제목을 출력하도록 바꾼 뒤 NAVI Study h1이 표시되는 것을 다시 확인했다.
+현재 이력은 50개 미만으로 미충족이다. 최초 원본 ZIP·스크립트 단순 등록 커밋 `e91058df38767f6d9cdd98708b83b97edcc9795d`를 제외하고 실제 수정만 센다. 이번 개선은 콘텐츠·CSS·배포 구성·문서 단위로 커밋했다. 최종 main의 정확한 후보·제외·유효 개수는 제출 PDF와 개선 결과 보고서에 기록한다.
 
-한국어 제목의 어미만 다음 줄로 넘어가는 현상을 보고 keep-all과 text-wrap:balance를 적용했다. 재빌드·새로고침 후 390px에서 가로 넘침이 없었다. README 실행 검증 중 site/public/ 생성도 확인해 .gitignore에 추가했다.
+```bash
+git rev-list --count main
+git log --reverse --format='%H %s' main
+```
 
-## 확인 범위와 한계
+## 남은 확인 범위
 
-200% 브라우저 확대, 다른 브라우저·OS, 화면 낭독기는 별도 검증하지 않았다. NAVI Study 프로젝트 화면은 가상 자료 프로토타입이며 실제 서비스 완료나 온라인 인증·동기화 구현의 증거로 사용하지 않는다.
-
-유효 커밋은 원본 ZIP 단순 등록을 제외한 실제 변경만 집계한다. 공개 기준 P51의 50개 이상에는 미달하며 정확한 최종 개수와 제외 SHA는 보고서에 기재한다.
+- 정확한 200% 브라우저 확대는 내장 브라우저에서 배율 변경을 확인하지 못해 미검증으로 남긴다. 작은 화면 폭 검사는 확대 검사로 대체했다고 쓰지 않는다.
+- 다른 브라우저·화면 낭독기와 NAVI 앱의 Windows·macOS 실행은 미검증이다.
+- Rust·Iced를 처음 선택한 개인적인 이유는 소스로 확인할 수 없어 임의로 작성하지 않았다. 별도 앱 공개 저장소 URL도 확인이 필요하다.
