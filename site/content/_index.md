@@ -22,7 +22,7 @@ Java 기반 객체지향 프로그래밍을 학습하고 있으며, 개인 프�
 
 과목별 강의 자료 탐색과 과제 마감 근거 확인을 지원하는 데스크톱 프로그램이다. 자료 저장·변환 모듈과 가상 데이터 기반 GUI 프로토타입을 구현하였다. 실제 자료 조회 및 영구 저장 기능의 GUI 연계는 후속 개발 범위에 해당한다.
 
-[![NAVI Study의 과목별 자료 목록과 본문 화면](images/navi-archive.png)](projects/lms/)
+{{< project-image src="images/navi-archive.png" href="projects/lms/" alt="NAVI Study의 과목별 자료 목록과 본문 화면" >}}
 
 [프로젝트 상세 보기 →](projects/lms/)
 {{< /project-preview >}}
