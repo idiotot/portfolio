@@ -130,7 +130,7 @@ nav a {
   text-decoration: none;
 }
 
-nav a[aria-current="page"] {
+nav a[aria-current="page"], nav a.is-section {
   text-decoration: underline;
   text-decoration-thickness: 2px;
 }

@@ -1,7 +1,14 @@
 {{ range .Site.Menus.main }}
   {{ $href := .URL }}
-  {{ if not (hasPrefix $href "https://") }}
+  {{ $external := or (hasPrefix $href "https://") (hasPrefix $href "http://") }}
+  {{ if not $external }}
     {{ $href = $href | relURL }}
   {{ end }}
-  <a href="{{ $href }}"{{ if eq $.RelPermalink $href }} aria-current="page"{{ end }}>{{ .Name }}</a>
+  {{ $current := eq $.RelPermalink $href }}
+  {{ $section := $href }}
+  {{ if not (hasSuffix $section "/") }}
+    {{ $section = printf "%s/" $section }}
+  {{ end }}
+  {{ $inSection := and (not $external) (not $current) (hasPrefix $.RelPermalink $section) }}
+  <a href="{{ $href }}"{{ if $current }} aria-current="page"{{ else if $inSection }} class="is-section"{{ end }}>{{ .Name }}</a>
 {{ end }}
