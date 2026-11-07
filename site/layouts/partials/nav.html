@@ -1,3 +1,7 @@
 {{ range .Site.Menus.main }}
-<a href="{{ if hasPrefix .URL "https://" }}{{ .URL }}{{ else }}{{ .URL | relURL }}{{ end }}">{{ .Name }}</a>
+  {{ $href := .URL }}
+  {{ if not (hasPrefix $href "https://") }}
+    {{ $href = $href | relURL }}
+  {{ end }}
+  <a href="{{ $href }}"{{ if eq $.RelPermalink $href }} aria-current="page"{{ end }}>{{ .Name }}</a>
 {{ end }}

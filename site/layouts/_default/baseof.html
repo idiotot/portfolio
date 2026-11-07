@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ if .IsHome }}idiotot | 개인 포트폴리오{{ else }}{{ .Title }} | idiotot{{ end }}</title>
 <meta name="description" content="{{ .Description | default .Site.Params.description }}">
-{{ partial "style.html" . }}
 {{ partial "custom_head.html" . }}
 </head>
 <body>
