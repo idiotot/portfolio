@@ -9,6 +9,7 @@ disableKinds = ['taxonomy', 'term', 'RSS']
 description = '컴퓨터공학을 공부하는 idiotot의 개인 포트폴리오. Rust로 개발하는 LMS 자료 관리 도구 NAVI Study와 학습 과정을 소개합니다.'
 [markup.highlight]
 style = 'friendly'
+noClasses = false
 lineNos = false
 [[menus.main]]
 name = '소개'

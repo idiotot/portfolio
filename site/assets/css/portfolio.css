@@ -265,6 +265,42 @@ th {
   color: var(--heading);
 }
 
+/* Chroma uses classes so the palette has one source of truth. */
+.chroma {
+  color: var(--text);
+}
+
+.chroma .k, .chroma .kd {
+  color: #007020;
+  font-weight: 700;
+}
+
+.chroma .nb, .chroma .bp {
+  color: #007020;
+}
+
+.chroma .nc {
+  color: #075575;
+  font-weight: 700;
+}
+
+.chroma .s1 {
+  color: #315b86;
+}
+
+.chroma .m, .chroma .mi, .chroma .mf {
+  color: #276445;
+}
+
+.chroma .c1 {
+  color: #3f6975;
+  font-style: italic;
+}
+
+.chroma .o {
+  color: #555555;
+}
+
 /* Narrow viewports and desktop zoom reflow */
 @media (max-width: 560px) {
   body {
