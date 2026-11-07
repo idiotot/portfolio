@@ -1,5 +1,6 @@
 +++
 title = 'NAVI Study'
+toc = true
 url = '/projects/lms/'
 description = 'NAVI Study의 데스크톱 UI 설계 배경, Rust·Iced 선정 근거, 구현 범위 및 42개 테스트 결과.'
 +++

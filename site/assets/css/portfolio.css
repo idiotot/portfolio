@@ -114,13 +114,13 @@ header {
   color: var(--link);
 }
 
-nav {
+header nav {
   display: flex;
   flex-wrap: wrap;
   gap: 8px 16px;
 }
 
-nav a {
+header nav a {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
@@ -130,7 +130,7 @@ nav a {
   text-decoration: none;
 }
 
-nav a[aria-current="page"], nav a.is-section {
+header nav a[aria-current="page"], header nav a.is-section {
   text-decoration: underline;
   text-decoration-thickness: 2px;
 }
@@ -160,6 +160,29 @@ footer {
 
 footer p {
   margin: 10px 0;
+}
+
+/* Document contents use a vertical list, separate from header menus. */
+.document-toc {
+  margin: 24px 0 32px;
+  padding: 18px 22px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.document-toc h2 {
+  margin: 0 0 12px;
+  font-size: 19px;
+}
+
+.document-toc ul {
+  margin: 8px 0;
+  padding-left: 22px;
+}
+
+.document-toc li {
+  margin: 5px 0;
 }
 
 /* Project preview and actual screenshots */
@@ -317,11 +340,11 @@ th {
     font-size: 24px;
   }
 
-  nav {
+  header nav {
     gap: 8px 12px;
   }
 
-  nav a {
+  header nav a {
     font-size: 13px;
   }
 

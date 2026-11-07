@@ -1,0 +1,6 @@
+{{ if .Params.toc }}
+<aside class="document-toc" aria-labelledby="document-toc-heading">
+  <h2 id="document-toc-heading">문서 목차</h2>
+  {{ .TableOfContents | replaceRE `<nav id="TableOfContents">` `<nav id="TableOfContents" aria-label="문서 목차">` | safeHTML }}
+</aside>
+{{ end }}

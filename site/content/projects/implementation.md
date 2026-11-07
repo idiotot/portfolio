@@ -1,5 +1,6 @@
 +++
 title = 'NAVI Study 구현 노트'
+toc = true
 url = '/projects/lms/implementation/'
 description = 'NAVI Study의 저장 구조, 중복 처리, 마감 판정, UI 상태 및 검증 결과.'
 +++
