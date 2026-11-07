@@ -1,27 +1,34 @@
 +++
-title = "Home"
-menu = "main"
-weight = 1
+title = '개인 포트폴리오'
 +++
 
-# A match made in heaven
+# 학습의 불편을 찾아, 작은 도구로 고칩니다.
 
-There is a website obesity crisis. Bloated websites full of scripts, ads, and trackers are slowing your readers down every time they try to read your well-crafted content.
+안녕하세요, **idiotot**입니다. 강의 자료와 과제 일정을 더 편하게 살펴볼 수 있는 도구를 만들며 개발을 배우고 있습니다.
 
-Hugo Bear Blog is all you need to build a fantastic and optimized site or blog. It works perfectly on **any** viewing device. All you need to focus on is writing good content.
+[소개 더 읽기 →](about/) · [GitHub에서 작업 보기 ↗](https://github.com/idiotot)
 
-[Go to the original bear blog](https://bearblog.dev/).
+## 지금 만들고 있는 것
 
----
+### NAVI Study — LMS 자료 관리 앱
 
-What happens when you combine the worlds' fastest, most lightweight static site generator with a design theme built to provide you with free, no-nonsense, super-fast blogging capabilities?
+강의 자료·공지·과제 일정을 한곳에서 확인하기 위한 개인 프로젝트입니다. Rust로 저장 계층과 자료 변환기를 구현하고, Iced로 네이티브 화면을 만들고 있습니다.
 
-**Use this theme, and find out!**
+**2026.11 · 진행 중** / Rust · SQLite · Iced
 
-Made with 💟 by [Jan Raasch](https://www.janraasch.com).
+![NAVI Study의 가상 강의 자료 보관함 화면](images/navi-archive.png)
 
----
+[프로젝트 과정과 결과 보기 →](projects/lms/)
 
-Simply publish content online, grow an audience, and keep your pages tiny, fast, and **optimized for search engines**.
+## 배우고 적용하는 기술
 
-Each page is ~5kb, and you can **host your blog yourself**.
+- **Rust** — 자료를 읽고 검증하는 저장 계층과 데이터 변환기를 구현합니다.
+- **SQLite** — 자료 상태를 저장하고 오류 상황을 검증하는 데 사용합니다.
+- **Iced** — 과목별 보관함, 일정, 마감 검토 화면을 구성합니다.
+- **GitHub Actions · Hugo** — 이 포트폴리오를 빌드하고 배포합니다.
+
+## 다음 목표
+
+가상 자료로 검증한 화면을 실제 저장 계층과 연결하는 것이 다음 목표입니다. 먼저 자료 목록 조회와 읽음 상태 저장을 연결하고, 앱을 다시 실행해도 상태가 유지되는지 확인하려 합니다.
+
+[관심 분야와 학습 계획 →](about/#learning)
