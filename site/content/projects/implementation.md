@@ -52,6 +52,26 @@ pub enum Deadline {
 
 각 후보는 시각과 `Evidence { path, line, quote }`를 보유한다. 완전한 날짜·시각은 시차를 반영한 시점으로 비교한다. 지원 범위 내에서 후보가 하나이면 확정하고, 서로 다른 시각이 남으면 충돌로 분류한다. 부분적인 날짜와 공식 날짜가 일치하지 않거나 후보 수가 처리 상한인 8개를 초과하면 확인 필요 상태를 반환한다.
 
+## Iced GUI 구성 {#gui-구성}
+
+검토 파일: `crates/study-ui/src/main.rs`, `view.rs`, `Cargo.toml`
+
+`Message`는 검색·과목 선택·검토 표시 등의 사용자 입력을 표현한다. `App::update`가 메시지에 따라 `App`의 상태를 변경하고, `App::view`는 현재 상태를 화면 요소로 변환한다. `main.rs`의 애플리케이션 연결과 창 설정은 다음과 같다. 설정 중 제목·렌더링 스타일 등은 생략하였다.
+
+```rust
+iced::application(boot, App::update, App::view)
+    // executor 및 title 설정 생략
+    .window(iced::window::Settings {
+        size: Size::new(1360.0, 860.0),
+        min_size: Some(Size::new(1080.0, 700.0)),
+        ..Default::default()
+    })
+    // 글꼴·테마·스타일 및 중앙 배치 설정 생략
+    .run()
+```
+
+GUI crate는 저장·변환 crate를 경로 의존성으로 선언하였다. 현재 화면의 가상 자료는 변환기를 거치지만, 저장 crate에 대한 의존성 선언 자체가 GUI의 SQLite 조회·저장 완료를 의미하지는 않는다. 데스크톱 중심의 세 영역 배치와 창 크기 제한을 유지하였으며, 좁은 창에서의 단일 영역 전환은 구현하지 않았다.
+
 ## UI 상태와 영구 저장
 
 검토 파일: `crates/study-ui/src/main.rs`, `demo.rs`
